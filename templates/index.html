@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sistema de Votação</title>
+</head>
+<body>
+<h1>Sistema de Votação</h1>
+{% if request.user.is_authenticated %}
+<h4>{{request.user.first_name}}</h4>
+<a href="{% url 'sistemavotacao:logout' %}">Sair</a>
+<a href="{% url 'sistemavotacao:adicionar-proposta' %}">Adicionar Proposta</a>
+{% else %}
+<a href="{% url 'sistemavotacao:login' %}">Login</a>
+<a href="{% url 'sistemavotacao:cadastro' %}">Cadastro</a>
+{% endif %}
+{% for x in object_list %}
+	<ul>
+		<li>{{x.nome}}</li>
+		<li>{{x.descricao}}</li>
+	</ul>
+{% endfor %}
+</body>
+</html>
